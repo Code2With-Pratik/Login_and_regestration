@@ -15,7 +15,7 @@ if(isset($_POST['login']))
          if(password_verify($_POST['password'],$result_fetch['password']))
          {
             #if password matched
-            echo "right";
+            
          }
          else
          {
