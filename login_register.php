@@ -1,5 +1,6 @@
 <?php 
 require('connection.php');
+session_start();
 
 # this is the section for login
 if(isset($_POST['login']))
@@ -15,7 +16,7 @@ if(isset($_POST['login']))
          if(password_verify($_POST['password'],$result_fetch['password']))
          {
             #if password matched
-            
+
          }
          else
          {
