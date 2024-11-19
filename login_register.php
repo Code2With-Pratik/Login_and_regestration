@@ -16,7 +16,9 @@ if(isset($_POST['login']))
          if(password_verify($_POST['password'],$result_fetch['password']))
          {
             #if password matched
-
+           $_SESSION['logged_in']=true;
+           $_SESSION['username']=$result_fetch['username'];
+           header("location: index.php");
          }
          else
          {
