@@ -26,7 +26,11 @@
     <?php 
       if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true)
       {
-        echo "$_SESSION[username] - <a href='logout.php'>LOGOUT</a>";
+        echo "
+           <div class='user'>
+               $_SESSION[username] - <a href='logout.php'>LOGOUT</a>
+           </div>
+         ";
       }
       else
       {
