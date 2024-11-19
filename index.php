@@ -36,8 +36,8 @@
       {
         echo "
           <div class='sign-in-up'>
-            <button type='button' onclick='popup('login-popup')'>LOGIN</button>
-            <button type='button' onclick='popup('register-popup')'>REGISTER</button>
+            <button type='button' onclick=\"popup('login-popup')\">LOGIN</button>
+            <button type='button' onclick=\"popup('register-popup')\">REGISTER</button>
           </div>
         ";
       }
@@ -54,8 +54,8 @@
           <span>USER LOGIN</span>
           <button type="reset" onclick="popup('login-popup')">X</button>
         </h2>
-        <input type="text" placeholder="E-mail or Username" name="email_username">
-        <input type="password" placeholder="Password" name="password">
+        <input type="text" placeholder="E-mail or Username" name="email_username" required>
+        <input type="password" placeholder="Password" name="password" required>
         <button type="submit" class="login-btn" name="login">LOGIN</button>
       </form>
     </div>
@@ -70,10 +70,10 @@
           <span>USER REGISTER</span>
           <button type="reset" onclick="popup('register-popup')">X</button>
         </h2>
-        <input type="text" placeholder="Full Name" name="fullname">
-        <input type="text" placeholder="Username" name="username">
-        <input type="email" placeholder="E-mail" name="email">
-        <input type="password" placeholder="Password" name="password">
+        <input type="text" placeholder="Full Name" name="fullname" required>
+        <input type="text" placeholder="Username" name="username" required>
+        <input type="email" placeholder="E-mail" name="email" required>
+        <input type="password" placeholder="Password" name="password" required>
         <button type="submit" class="register-btn" name="register">REGISTER</button>
       </form>
     </div>
