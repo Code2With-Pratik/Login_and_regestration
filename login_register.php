@@ -1,71 +1,68 @@
 <?php 
-  
-  require('connection.php');
+require('connection.php');
 
-  if(isset($_POST['register']))
-  {
-    $user_exist_query = "SELECT * FROM `registered_users` WHERE `username`='$_POST[username]' OR `email`='$$_POST[email]'";
-    $result = mysqli_query($con,$user_exist_query);
+if (isset($_POST['register'])) {
+    // Sanitize user inputs to prevent SQL injection and other issues
+    $fullname = mysqli_real_escape_string($con, $_POST['fullname']);
+    $username = mysqli_real_escape_string($con, $_POST['username']);
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $password = mysqli_real_escape_string($con, $_POST['password']);
 
-    if($result)
-    {
-      if(mysqli_num_rows($result)>0)
-      {
-        $result_fetch=mysqli_fetch_assoc($result);
-        if($result_fetch['username']==$_POST['username'])
-        {
-            # username is already regesterd
-          echo"
-            <script>
-                alert('$result_fetch[username] - Username already taken');
-                window.location.href='index.php';
-            </script>
-          "; 
+    // Check if the username or email already exists
+    $user_exist_query = "SELECT * FROM `registered_users` WHERE `username` = '$username' OR `email` = '$email'";
+    $result = mysqli_query($con, $user_exist_query);
+
+    if ($result) {
+        if (mysqli_num_rows($result) > 0) {
+            $result_fetch = mysqli_fetch_assoc($result);
+
+            if ($result_fetch['username'] == $username) {
+                // Username is already registered
+                echo "
+                    <script>
+                        alert('Username \"$username\" is already taken.');
+                        window.location.href = 'index.php';
+                    </script>
+                ";
+            } elseif ($result_fetch['email'] == $email) {
+                // Email is already registered
+                echo "
+                    <script>
+                        alert('Email \"$email\" is already registered.');
+                        window.location.href = 'index.php';
+                    </script>
+                ";
+            }
+        } else {
+            // Hash the password for secure storage
+            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+            // Insert user data into the database
+            $query = "INSERT INTO `registered_users`(`full_name`, `username`, `email`, `password`) 
+                      VALUES ('$fullname', '$username', '$email', '$hashed_password')";
+            if (mysqli_query($con, $query)) {
+                echo "
+                    <script>
+                        alert('Registration successful!');
+                        window.location.href = 'index.php';
+                    </script>
+                ";
+            } else {
+                echo "
+                    <script>
+                        alert('Failed to register. Please try again later.');
+                        window.location.href = 'index.php';
+                    </script>
+                ";
+            }
         }
-      }
-      else
-      {
-        # error for email is  already registered
-        echo"
+    } else {
+        echo "
             <script>
-                alert('$result_fetch[email] - E-mail already registered');
-                window.location.href='index.php';
+                alert('Failed to execute query. Please try again later.');
+                window.location.href = 'index.php';
             </script>
         ";
-      }
-      else
-      {
-        $query = "INSERT INTO `registered_users`(`full_name`, `username`, `email`, `password`) VALUES ('$_POST[fullname]','$_POST[username]','$_POST[email]','$_POST[password]')";
-        if(mysqli_query($con,$query))
-        {
-            echo"
-                <script>
-                    alert('Registration Successful');
-                    window.location.href='index.php';
-                </script>
-            ";
-        }
-        else
-        {
-            # if data cannot be inserted
-            echo"
-                <script>
-                    alert('Cannot Run Query');
-                    window.location.href='index.php';
-                </script>
-            ";
-        }
-      }
     }
-    else
-    {
-      echo"
-        <script>
-            alert('Cannot Run Query');
-            window.location.href='index.php';
-        </script>
-      ";
-    }
-  }
-
+}
 ?>
