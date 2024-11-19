@@ -65,7 +65,7 @@
   <?php 
   if(isset($_SESSION['logged_in']))
   {
-
+     echo "<h1 style='text-align: center; margin-top: 300px;'>WELCOME TO THIS WEBSITE - $_SESSION[username]</h1>";
   }
   ?>
 
