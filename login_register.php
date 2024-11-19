@@ -1,6 +1,55 @@
 <?php 
 require('connection.php');
 
+# this is the section for login
+if(isset($_POST['login']))
+{
+    $query = "SELECT * FROM `registered_users` WHERE `email`='$_POST[email_username]' OR `username`='$_POST[email_username]'";
+    $result = mysqli_query($con,$query);
+
+    if($result)
+    {
+      if(mysqli_num_rows($result)==1)
+      {
+         $result_fetch = mysqli_fetch_assoc($result);
+         if(password_verify($_POST['password'],$result_fetch['password']))
+         {
+            #if password matched
+            echo "right";
+         }
+         else
+         {
+            #if incorrect password
+            echo "
+                <script>
+                    alert('Incorrect Password.');
+                    window.location.href = 'index.php';
+                </script>
+            ";
+         }
+      }
+      else
+      {
+        echo "
+            <script>
+                alert('Email or Username is not registered.');
+                window.location.href = 'index.php';
+            </script>
+        ";
+      }
+    }
+    else
+    {
+        echo "
+            <script>
+                alert('Failed to register. Please try again later.');
+                window.location.href = 'index.php';
+            </script>
+        ";
+    }
+}
+
+# this is the section for registration
 if (isset($_POST['register'])) {
     // Sanitize user inputs to prevent SQL injection and other issues
     $fullname = mysqli_real_escape_string($con, $_POST['fullname']);
@@ -65,4 +114,5 @@ if (isset($_POST['register'])) {
         ";
     }
 }
+
 ?>
