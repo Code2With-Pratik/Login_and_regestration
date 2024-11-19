@@ -25,9 +25,10 @@
       }
       else
       {
+        # error for email is  already registered
         echo"
             <script>
-                alert('Cannot Run Query');
+                alert('$result_fetch[email] - E-mail already registered');
                 window.location.href='index.php';
             </script>
         ";
