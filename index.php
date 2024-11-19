@@ -10,7 +10,7 @@
 <body>
   
   <header>
-    <h2>TJ WEBDEVz</h2>
+    <h2>code_2_with_pratik</h2>
     <nav>
       <a href="#">HOME</a>
       <a href="#">BLOG</a>
