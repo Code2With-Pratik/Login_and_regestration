@@ -38,10 +38,16 @@
         $query = "INSERT INTO `registered_users`(`full_name`, `username`, `email`, `password`) VALUES ('$_POST[fullname]','$_POST[username]','$_POST[email]','$_POST[password]')";
         if(mysqli_query($con,$query))
         {
-
+            echo"
+                <script>
+                    alert('Registration Successful');
+                    window.location.href='index.php';
+                </script>
+            ";
         }
         else
         {
+            # if data cannot be inserted
             echo"
                 <script>
                     alert('Cannot Run Query');
