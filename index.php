@@ -68,7 +68,7 @@
       <form method="POST" action="login_register.php">
         <h2>
           <span>USER REGISTER</span>
-          <button type="reset" onclick="popup('register-popup')">X</button>
+          <button type="reset" onclick="popup('register-popup')">😺</button>
         </h2>
         <input type="text" placeholder="Full Name" name="fullname" required>
         <input type="text" placeholder="Username" name="username" required>
