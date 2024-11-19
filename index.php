@@ -22,10 +22,23 @@
       <a href="#">CONTACT</a>
       <a href="#">ABOUT</a>
     </nav>
-    <div class='sign-in-up'>
-      <button type='button' onclick="popup('login-popup')">LOGIN</button>
-      <button type='button' onclick="popup('register-popup')">REGISTER</button>
-    </div>
+
+    <?php 
+      if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true)
+      {
+        echo "$_SESSION[username] - <a href='logout.php'>LOGOUT</a>";
+      }
+      else
+      {
+        echo "
+          <div class='sign-in-up'>
+            <button type='button' onclick='popup('login-popup')'>LOGIN</button>
+            <button type='button' onclick='popup('register-popup')'>REGISTER</button>
+          </div>
+        ";
+      }
+    ?>
+
   </header>
 
   <!-- user login form -->
@@ -63,7 +76,7 @@
   </div>
 
   <?php 
-  if(isset($_SESSION['logged_in']))
+  if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true)
   {
      echo "<h1 style='text-align: center; margin-top: 300px;'>WELCOME TO THIS WEBSITE - $_SESSION[username]</h1>";
   }
