@@ -52,7 +52,7 @@
       <form method="POST" action="login_register.php">
         <h2>
           <span>USER LOGIN</span>
-          <button type="reset" onclick="popup('login-popup')">X</button>
+          <button type="reset" onclick="popup('login-popup')">🙈</button>
         </h2>
         <input type="text" placeholder="E-mail or Username" name="email_username" required>
         <input type="password" placeholder="Password" name="password" required>
