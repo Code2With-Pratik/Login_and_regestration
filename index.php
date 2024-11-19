@@ -1,4 +1,7 @@
-<?php require('connection.php'); ?>
+<?php 
+  require('connection.php'); 
+  session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,6 +61,13 @@
       </form>
     </div>
   </div>
+
+  <?php 
+  if(isset($_SESSION['logged_in']))
+  {
+
+  }
+  ?>
 
   <script>
     function popup(popup_name)
