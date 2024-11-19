@@ -35,7 +35,20 @@
       }
       else
       {
+        $query = "INSERT INTO `registered_users`(`full_name`, `username`, `email`, `password`) VALUES ('$_POST[fullname]','$_POST[username]','$_POST[email]','$_POST[password]')";
+        if(mysqli_query($con,$query))
+        {
 
+        }
+        else
+        {
+            echo"
+                <script>
+                    alert('Cannot Run Query');
+                    window.location.href='index.php';
+                </script>
+            ";
+        }
       }
     }
     else
