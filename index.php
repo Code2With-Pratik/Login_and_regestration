@@ -23,6 +23,8 @@
     </div>
   </header>
 
+  <!-- user login form -->
+  
   <div class="popup-container" id="login-popup">
     <div class="popup">
       <form method="POST" action="login_register.php">
@@ -36,6 +38,8 @@
       </form>
     </div>
   </div>
+
+  <!-- user regestration form -->
 
   <div class="popup-container" id="register-popup">
     <div class="register popup">
